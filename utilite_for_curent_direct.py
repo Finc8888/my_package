@@ -10,7 +10,7 @@
 
 # Для решения данной задачи используйте алоритмы из задания easy,
 # оформленныйе в виде соответствующих функций, и импортированные в данный файл из easy.py
-import hw5e as h
+import functions as fun                                                                                                                                                                                          
 import sys
 import os
 import shutil
@@ -37,25 +37,24 @@ while True:
 	elif int(choise) == 1:
 		
 		if note == 'root':
-			path = abs_path
-			os.chdir(path)
+			fun.set_dir(note)
 			print("Успешный переход в директорию ", path)
 		else:
 			path = os.path.join(abs_path, note)
 			os.chdir(path)
 			print("Успешный переход в директорию ", path)
 	elif int(choise) == 2:
-		dirs = h.look_dir(-1)
+		dirs = fun.look_dir(-1)
 		print("Содержание текущей папки:\n", dirs)
 	elif int(choise) == 3:
 		try:
-			choise(0, note)
+			fun.choise(0, note)
 			print("Успешное удаление папки ", note)
 		except:
 			print("Неудачная попытка удаления директории")
 
 	elif int(choise) == 4:
-		choise(1, note, 1)
+		fun.choise(1, note, 1)
 		print("Успешно созданна директория ", note)
 	else:
 		print("Некорректный ввод данных")
