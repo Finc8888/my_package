@@ -1,12 +1,17 @@
-# Задача-1:
-# Напишите скрипт создающий директории dir_1 - dir_9 в папке из которой запущен данный скрипт.
-# И второй скрипт, удаляющий эти папки.
+
 import os
 import sys
 import shutil
-import psutil
+# import psutil
 #Функция для выбора действия 1 - создать 9 папок в текущей директории
 #0 - удаление ранее созданных папок
+def set_dir(path):
+	"""
+	Функция устанавливает текущую дирректорию                                                                                                                                                                                                                                                                                                                                                                                                                                              
+
+	"""
+	os.chdir(path)
+
 def choise(moution, name = "dir_",n = 1):
 	"""
 	Функция создает moution = 1, или удаляет moution = 0 папку в папке из
@@ -19,7 +24,7 @@ def choise(moution, name = "dir_",n = 1):
 		try:
 			for item in range(1, n + 1):
 				new_dir = "%s%d"%(name,item)
-				dir_path = os.path.join(os.getcwd(),'{new_dir}'.format(new_dir = new_dir))#os.path.join объединяет строки с именами каталого sep=\
+				dir_path = os.path.join(os.getcwd(),'{new_dir}'.format(new_dir = new_dir))
 				os.mkdir(dir_path)
 				print("Директория {d} - {new_dir} создана".format(d = item, new_dir = new_dir))
 		except FileExistsError:
@@ -32,7 +37,7 @@ def choise(moution, name = "dir_",n = 1):
 				dir_path = os.path.join(os.getcwd(),'{new_dir}'.format(new_dir = new_dir))
 				if new_dir in dir_path:
 					shutil.rmtree(dir_path)
-					print("Удаление директории {d} - {new_dir} выполнено".format(d = item, new_dir = new_dir))#пример использования f строк
+					print("Удаление директории {d} - {new_dir} выполнено".format(d = item, new_dir = new_dir))
 		except FileNotFoundError:
 			print('Такая директория не существует')
 	else:
