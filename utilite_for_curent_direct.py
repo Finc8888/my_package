@@ -30,32 +30,41 @@ abs_path = os.getcwd()
 while True:
 
 	choise = input("Выберите текущее действие\n")
-	note = input("Выберите папку\n")
+	if int(choise) != 2:
+		note = input("Выберите папку\n")
 
-	if int(choise) <=0 or choise == "q":
-		break
-	elif int(choise) == 1:
-		
-		if note == 'root':
-			fun.set_dir(note)
-			print("Успешный переход в директорию ", path)
-		else:
+		if int(choise) <=0 or choise == "q":
+			break
+		elif int(choise) == 1:
+			
+			# if note == 'root':
+			# 	fun.set_dir(note)
+			# 	print("Успешный переход в директорию ", path)
+			# else:
+			global path
 			path = os.path.join(abs_path, note)
-			os.chdir(path)
-			print("Успешный переход в директорию ", path)
-	elif int(choise) == 2:
-		dirs = fun.look_dir(-1)
-		print("Содержание текущей папки:\n", dirs)
-	elif int(choise) == 3:
-		try:
-			fun.choise(0, note)
-			print("Успешное удаление папки ", note)
-		except:
-			print("Неудачная попытка удаления директории")
+			inspect = os.path.exists(path)#возращает True если указанный path существует в файловой системе
+			if inspect == True:
+				fun.set_dir(path)
+				print("Успешный переход в директорию ", path)
+			else:
+				print("Указанного пути не существует")
 
-	elif int(choise) == 4:
-		fun.choise(1, note, 1)
-		print("Успешно созданна директория ", note)
+		
+		elif int(choise) == 3:
+			try:
+				fun.choise(0, note)
+				print("Успешное удаление папки ", note)
+			except:
+				print("Неудачная попытка удаления директории")
+
+		elif int(choise) == 4:
+			fun.choise(1, note, 1)
+			print("Успешно созданна директория ", note)
+		else:
+			print("Некорректный ввод данных")
 	else:
-		print("Некорректный ввод данных")
-		continue
+		print(path)
+		dirs = fun.see(path)
+		print("Содержание текущей папки:\n", dirs)
+
