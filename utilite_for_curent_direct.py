@@ -26,7 +26,7 @@ print(os.getcwd())
 print("Утилита, позволяющую работать с папками текущей директории\
 \n Меню выбора дейстия:\n1. Перейти в папку\n2. Просмотреть содержимое текущей папки\
 \n3. Удалить папку\n4. Создать папку\n")
-abs_path = os.getcwd()
+# abs_path = os.getcwd()
 while True:
 
 	choise = input("Выберите текущее действие\n")
@@ -41,14 +41,17 @@ while True:
 			# 	fun.set_dir(note)
 			# 	print("Успешный переход в директорию ", path)
 			# else:
-			global path
-			path = os.path.join(abs_path, note)
-			inspect = os.path.exists(path)#возращает True если указанный path существует в файловой системе
+			# global path
+			# path = os.path.join(abs_path, note)
+			inspect = os.path.exists(note)#возращает True если указанный path существует в файловой системе
 			if inspect == True:
-				fun.set_dir(path)
-				print("Успешный переход в директорию ", path)
+				fun.set_dir(note)
+				print("Успешный переход в директорию ", note)
 			else:
 				print("Указанного пути не существует")
+				abs_path = os.getcwd()
+				path = os.path.join(abs_path, note)
+				fun.set_dir(path)
 
 		
 		elif int(choise) == 3:
@@ -64,6 +67,7 @@ while True:
 		else:
 			print("Некорректный ввод данных")
 	else:
+		path = os.getcwd()
 		print(path)
 		dirs = fun.see(path)
 		print("Содержание текущей папки:\n", dirs)
