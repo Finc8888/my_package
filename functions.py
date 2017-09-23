@@ -56,12 +56,12 @@ def look_dir(what_look):
 	else:
 		dir_name = list(os.walk(os.getcwd()))[0][what_look]
 	return dir_name
-def see():
+def see(path):
 	"""
 	Просмотреть содержимое текущей папки
 
 	"""
-	return os.listdir(os.getcwd())#список с именами элементов указанного каталога
+	return os.listdir(path)#список с именами элементов указанного каталога
 
 # Задача-3:
 # Напишите скрипт создающий копию файла, из которого запущен данный скрипт
