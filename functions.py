@@ -86,6 +86,14 @@ def remove_file(name,what = 2):
 		shutil.rmtree(os.path.join(os.getcwd(),name))#удаление дерева папок
 	else:
 		print("Некорректный ввод данных")
+def new_dir(name):
+	try:
+		dir_path =os.path.join(os.getcwd(), name)
+		os.mkdir(dir_path)
+		# print("Директория {new_dir} создана".format(new_dir = name))
+	except FileExistsError:
+		print('Такая директория уже существует')
+
 
 # os.rename(src,dst)#переименовывает файл или каталог scr в dst
 

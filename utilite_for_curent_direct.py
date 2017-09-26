@@ -28,44 +28,39 @@ print("Утилита, позволяющую работать с папками
 \n3. Удалить папку\n4. Создать папку\n")
 # abs_path = os.getcwd()
 while True:
-
 	choise = input("Выберите текущее действие\n")
-	if int(choise) != 2:
-		note = input("Выберите папку\n")
+	try:
+		if int(choise) != 2:
+			note = input("Выберите папку\n")
 
-		if int(choise) <=0 or choise == "q" or choise == "":
-			break
-		elif int(choise) == 1:
-			
-			# if note == 'root':
-			# 	fun.set_dir(note)
-			# 	print("Успешный переход в директорию ", path)
-			# else:
-			# global path
-			# path = os.path.join(abs_path, note)
-			inspect = os.path.exists(note)#возращает True если указанный path существует в файловой системе
-			if inspect == True:
-				fun.set_dir(note)
-				print("Успешный переход в директорию ", note)
-			else:
-				abs_path = os.getcwd()
-				path = os.path.join(abs_path, note)
-				fun.set_dir(path)
-		elif int(choise) == 3:
-			try:
-				fun.choise(0, note)
-				print("Успешное удаление папки ", note)
-			except:
-				print("Неудачная попытка удаления директории")
+			if choise == "q" or choise == "":
+				break
+			elif int(choise) == 1:
+				inspect = os.path.exists(note)#возращает True если указанный path существует в файловой системе
+				if inspect == True:
+					fun.set_dir(note)
+					print("Успешный переход в директорию ", note)
+				else:
+					abs_path = os.getcwd()
+					path = os.path.join(abs_path, note)
+					fun.set_dir(path)
+			elif int(choise) == 3:
+				try:
+					fun.remove_file(note, -1)
+					print("Успешное удаление папки ", note)
+				except:
+					print("Неудачная попытка удаления директории")
 
-		elif int(choise) == 4:
-			fun.choise(1, note, 1)
-			print("Успешно созданна директория ", note)
+			elif int(choise) == 4:
+				fun.new_dir(note)
+				print("Успешно созданна директория ", note)
+			elif 0>=int(choise)>4:
+				print("Некорректный ввод данных")
 		else:
-			print("Некорректный ввод данных")
-	else:
-		path = os.getcwd()
-		print(path)
-		dirs = fun.see(path)
-		print("Содержание текущей папки:\n", dirs)
+			path = os.getcwd()
+			print(path)
+			dirs = fun.see(path)
+			print("Содержание текущей папки:\n", dirs)
+	except ValueError:
+		print("Ввод должен быть числовой: цифры от 1 до 4")
 
