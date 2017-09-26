@@ -30,7 +30,7 @@ print("Утилита, позволяющую работать с папками
 while True:
 	choise = input("Выберите текущее действие\n")
 	try:
-		if int(choise) != 2:
+		if int(choise)!= 2 and int(choise)<4 and not int(choise)<=0:
 			note = input("Выберите папку\n")
 
 			if choise == "q" or choise == "":
@@ -54,13 +54,15 @@ while True:
 			elif int(choise) == 4:
 				fun.new_dir(note)
 				print("Успешно созданна директория ", note)
-			elif 0>=int(choise)>4:
+			elif int(choise)>4 or int(choise)<=0:
 				print("Некорректный ввод данных")
-		else:
+		elif int(choise) == 2:
 			path = os.getcwd()
 			print(path)
 			dirs = fun.see(path)
 			print("Содержание текущей папки:\n", dirs)
+		else:
+			print("Некорректный ввод данных")
 	except ValueError:
 		print("Ввод должен быть числовой: цифры от 1 до 4")
 
