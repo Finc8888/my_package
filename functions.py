@@ -10,7 +10,10 @@ def set_dir(path):
 	Функция устанавливает текущую дирректорию                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
 	"""
-	os.chdir(path)
+	try:
+		os.chdir(path)
+	except:
+		print("Указанного пути не существует")
 
 def choise(moution, name = "dir_",n = 1):
 	"""

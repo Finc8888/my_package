@@ -33,7 +33,7 @@ while True:
 	if int(choise) != 2:
 		note = input("Выберите папку\n")
 
-		if int(choise) <=0 or choise == "q":
+		if int(choise) <=0 or choise == "q" or choise == "":
 			break
 		elif int(choise) == 1:
 			
@@ -48,12 +48,9 @@ while True:
 				fun.set_dir(note)
 				print("Успешный переход в директорию ", note)
 			else:
-				print("Указанного пути не существует")
 				abs_path = os.getcwd()
 				path = os.path.join(abs_path, note)
 				fun.set_dir(path)
-
-		
 		elif int(choise) == 3:
 			try:
 				fun.choise(0, note)
